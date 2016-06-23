@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<center>
+<head>
+<img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Perka_logo_with_starburst_%27P%27_and_TM.png">
+</head>
+
+<h2>Merchant Support Ticket Report</h2>
+<p>P1 = between 30 and 60 days ago.</p>
+<p>P2 = the last 30 days.</p>
+<p>Percentages represents the change from P1 to P2.</p>
+
+<h4>TICKET TOTALS:</h4>
+<p>P1 = {{ticket_total_p1}}</p>
+<p>P2 = {{ticket_total_p2}}</p>
+<p>{{percent_change_total}}</p>
+
+<h4>ACCOUNT ISSUES:</h4>
+<p>P1 = {{account_issues_p1}}</p>
+<p>P2 = {{account_issues_p2}}</p>
+<p>{{account_issues_change}}</p>
+
+<h4>BEACON:</h4>
+<p>P1 = {{beacon_p1}}</p>
+<p>P2 = {{beacon_p2}}</p>
+<p>{{account_issues_change}}</p>
+
+<h4>EARNING POINTS/PUNCHES:</h4>
+<p>P1 = {{earning_points_punches_p1}}</p>
+<p>P2 = {{earning_points_punches_p2}}</p>
+<p>{{earning_points_punches_change}}</p>
+
+<h4>MERCHANT BOARDING:</h4>
+<p>P1 = {{merchant_boarding_p1}}</p>
+<p>P2 = {{merchant_boarding_p2}}</p>
+<p>{{merchant_boarding_change}}</p>
+
+<h4>OTHER:</h4>
+<p>P1 = {{other_p1}}</p>
+<p>P2 = {{other_p2}}</p>
+<p>{{other_change}}</p>
+
+<h4>PAYMENT:</h4>
+<p>P1 = {{payment_p1}}</p>
+<p>P2 = {{payment_p2}}</p>
+<p>{{payment_change}}</p>
+
+<h4>REDEEMING PERKS:</h4>
+<p>P1 = {{redeeming_perks_p1}}</p>
+<p>P2 = {{redeeming_perks_p2}}</p>
+<p>{{redeeming_perks_change}}</p>
+
+<h4>SPECIALS:</h4>
+<p>P1 = {{specials_p1}}</p>
+<p>P2 = {{specials_p2}}</p>
+<p>{{specials_change}}</p>
+
+<h4>SUCCESS STORIES:</h4>
+<p>P1 = {{success_stories_p1}}</p>
+<p>P2 = {{sucess_stories_p2}}</p>
+<p>{{success_stories_change}}</p>
+
+<h4>TECHNICAL SYSTEM ERROR:</h4>
+<p>P1 = {{technical_system_error_p1}}</p>
+<p>P2 = {{technical_system_error_p2}}</p>
+<p>{{technical_system_error_change}}</p>
+
+</center>
+
+var chart = c3.generate({
+    data: {{data|safe}},
+    axis: {
+        x: {
+            type: 'category' // this needed to load string x value
+        }
+    }
+});
+
+
+var chart = c3.generate({
+    data: {{data|safe}},
+    bar: {
+        width: {
+            ratio: 0.5 // this makes bar width 50% of length between ticks
+        }
+        // or
+        //width: 100 // this makes bar width 100px
+    }
+});
+
+{
+    'x': 'x',
+    'type': 'bar',
+    'columns': [
+    ['x', u'technical_system_error', u'beacon', u'other_topic', u'account_issues', u'earning_points_punches', 'unknown', u'autopay', u'merchant_boarding', u'redeeming_perks_topic'],
+    ['p1', 0, 1, 2, 4, 3, 5, 0, 4, 1],
+    ['p2', 1, 0, 1, 4, 1, 7, 1, 4, 0]
+    ]
+}
+
+var chart = c3.generate({
+    data: {
+        x : 'x',
+        columns: [
+            ['x', u'technical_system_error', u'beacon', u'other_topic', u'account_issues', u'earning_points_punches', 'unknown', u'autopay', u'merchant_boarding', u'redeeming_perks_topic'],
+            ['p1', 0, 1, 2, 4, 3, 5, 0, 4, 1],
+            ['p2', 1, 0, 1, 4, 1, 7, 1, 4, 0]
+        ],
+        type: 'bar'
+    },
+    axis: {
+        x: {
+            type: 'category' // this needed to load string x value
+        }
+    }
+});
+
+var chart = c3.generate({
+    data: {
+        x : 'x',
+        columns: [
+            ['x', 'www.site1.com', 'www.site2.com', 'www.site3.com', 'www.site4.com'],
+            ['download', 30, 200, 100, 400],
+            ['loading', 90, 100, 140, 200],
+        ],
+        type: 'bar'
+    },
+    axis: {
+        x: {
+            type: 'category' // this needed to load string x value
+        }
+    }
+});
+
+
+var chart = c3.generate({
+    data: {{data|safe}},
+    axis: {
+        x: {
+            type: 'category' // this needed to load string x value
+        }
+    }
+});
+
+
+<h4>Former Period:</h4>
+<div>{{p1.format_start()}} - {{p1.format_end()}}</div>
+<div>Ticket Total = {{period_totals_data['p1_tickets_total']}}</div>
+
+<h4>Latter Period:</h4>
+{{p2.format_start()}} - {{p2.format_end()}}</div>
+<div>Ticket Total = {{period_totals_data['p2_tickets_total']}}</div>
+
+<h4>Ticket Total Percent Change:</h4>
+<div>{{period_totals_data['percent_change']}}%</div>

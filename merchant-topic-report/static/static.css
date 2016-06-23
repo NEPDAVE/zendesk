@@ -1,0 +1,18 @@
+body {
+	font-size: 150%;
+}
+
+th {
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid #111111;
+    border-top: 2px solid #111111;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background: #e6e6e6
+}
+
+tr:nth-child(odd) {
+    background: #FFF
+}

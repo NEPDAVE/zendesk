@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="static/static.css" type="text/css" rel="stylesheet">
+
+<!-- Load c3.css -->
+<link href="/static/c3/c3.css" rel="stylesheet" type="text/css">
+<!-- Load d3.js and c3.js -->
+<script src="/static/d3/d3.min.js" charset="utf-8"></script>
+<script src="/static/c3/c3.min.js"></script>
+
+</head>
+<body>
+<center>
+
+<p1>
+
+<h2>Merchant Support Ticket Report</h2>
+
+<p><sup>This report calculates the percent change in Ticket Topics from the former to the latter time periods.</sup></p>
+<p><sup>Each time period is the same number of days. The ending day of the latter time period is yesterday.</sup></p>
+
+
+<sup>Former Period: {{p1.format_start()}} - {{p1.format_end()}}, Ticket Total = {{period_totals_data['p1_tickets_total']}}</sup>
+<br></br>
+<sup>Latter Period: {{p2.format_start()}} - {{p2.format_end()}}, Ticket Total = {{period_totals_data['p2_tickets_total']}}</sup>
+<br></br>
+<sup>Ticket Total Percent Change: {{period_totals_data['percent_change']}}%</sup>
+
+<div id="chart"></div>
+
+<table>
+    <tr>
+        <th>Ticket Topic</th>
+        <th>Former Period</th>
+        <th>Latter Period</th>
+        <th>Percent Change</th>
+    </tr>
+
+    {% for k in report_data %}
+    <tr>
+        <td>{{k|replace('_', ' ')}}</td>
+        <td>{{report_data[k]['first_period_count']}}</td>
+        <td>{{report_data[k]['second_period_count']}}</td>
+        <td>{{report_data[k]['percent_change']}}%</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+
+<p><sup>Submit a number of days for the report time periods. The report will refresh with new data.</sup></p>
+
+<form action="">
+<input name="length" type="number"></input>
+<button type="submit">Submit</button>
+</form>
+
+</center>
+
+<script>
+
+var chart = c3.generate({
+    data: {{data|replace('_', ' ')|safe}},
+    axis: {
+        x: {
+            type: 'category' // this needed to load string x value
+        }
+    }
+});
+
+</script>
+</body>
+</html>
