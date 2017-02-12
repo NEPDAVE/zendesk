@@ -1,4 +1,0 @@
-https://perka.zendesk.com/api/v2/views/47798283/execute.json
-
-
-https://perka.zendesk.com/api/v2/search.json?query=created>=2016-03-15+created<2016-03-17+type:ticket
